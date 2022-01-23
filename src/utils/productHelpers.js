@@ -1,0 +1,35 @@
+export function getProductFixedPrice (product) {
+  return product?.data?.fixedPrice
+}
+
+export function getProductCategories (product) {
+  return product?.categories?.filter(c => c.data?.showOnProductCard)
+    .sort((a, b) => a.data?.displayPriority - b.data?.displayPriority) ?? []
+}
+
+export function getProductCateogiesMaxOffPercent (product) {
+  return getProductCategories(product)?.reduce((max, c) => {
+    try {
+      const percent = parseInt(c.data?.offPercent)
+      if (percent > 0 && percent < 100 && percent > max) {
+        return percent
+      }
+    } catch (e) {
+      console.error(e)
+    }
+    return max
+  }, 0) ?? 0
+}
+
+export function getProductPriceTag (product) {
+  const m = getProductCateogiesMaxOffPercent(product)
+  const a = getProductFixedPrice(product)
+  if (m > 0) {
+    return parseInt(a?.amount) * (1 - (m / 100))
+  } else {
+    if (product?.pivot?.data?.amount) {
+      return parseInt(product?.pivot?.data?.amount)
+    }
+    return parseInt(a.amount)
+  }
+}
