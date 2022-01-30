@@ -17,7 +17,7 @@ export default {
       })
     },
     cartStatusList () {
-      return this.$paas?.getAvailableCartStatuses(this)
+      return this.$press?.getAvailableCartStatuses(this)
     },
     cartStatus () {
       return this.cartStatusList.find(s => s.value === this.cart?.status)

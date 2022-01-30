@@ -8,7 +8,7 @@ export function createAutoLoader (name, self, autoloads, def) {
 
 export function createAuthorAutoLoader ($component, autoloads, name = 'author', self = '*', def = {}) {
   return {
-    crud: () => $component.$paas?.loadCrudWithName('User'),
+    crud: () => $component.$press?.loadCrudWithName('User'),
     autoloads: createAutoLoader(name, self, autoloads, {
       wallet_balance: false,
       domains: false,

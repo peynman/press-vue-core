@@ -63,7 +63,7 @@ export function nameTitleColumn (
         decorateMap,
       },
       factory: () => ({
-        component: $component.$paas?.importAsyncComponent('ObjectNameTitleColumn'),
+        component: $component.$press?.importAsyncComponent('ObjectNameTitleColumn'),
       }),
     },
   }
@@ -81,7 +81,7 @@ export function bitwiseFlagsColumn ($component, name, title, value, items) {
         items,
       },
       factory: () => ({
-        component: $component.$paas?.importAsyncComponent('BitwiseFlagsColumn'),
+        component: $component.$press?.importAsyncComponent('BitwiseFlagsColumn'),
       }),
     },
   }
@@ -98,7 +98,7 @@ export function decimalColumn ($component, name, title, value, sortable = true) 
         value: `$(bindings.${value})`,
       },
       factory: () => ({
-        component: $component.$paas?.importAsyncComponent('DecimalColumn'),
+        component: $component.$press?.importAsyncComponent('DecimalColumn'),
       }),
     },
   }
@@ -116,7 +116,7 @@ export function objectStatusColumn ($component, name, title, value, items) {
         items,
       },
       factory: () => ({
-        component: $component.$paas?.importAsyncComponent('ObjectStatusColumn'),
+        component: $component.$press?.importAsyncComponent('ObjectStatusColumn'),
       }),
     },
   }
@@ -133,7 +133,7 @@ export function currencyColumn ($component, name, title, value) {
         value: `$(bindings.${value})`,
       },
       factory: () => ({
-        component: $component.$paas?.importAsyncComponent('CurrencyColumn'),
+        component: $component.$press?.importAsyncComponent('CurrencyColumn'),
       }),
     },
   }
@@ -166,7 +166,7 @@ export function userProfileColumn ($component, name, title, column) {
         user: `$(bindings.${column})`,
       },
       factory: () => ({
-        component: $component.$paas?.importAsyncComponent('UserProfileColumn'),
+        component: $component.$press?.importAsyncComponent('UserProfileColumn'),
       }),
     },
   }
@@ -183,7 +183,7 @@ export function cartDetailsColumn ($component, name, title, column) {
         cart: `$(bindings.${column})`,
       },
       factory: () => ({
-        component: $component.$paas?.importAsyncComponent('CartDetailsColumn'),
+        component: $component.$press?.importAsyncComponent('CartDetailsColumn'),
       }),
     },
   }

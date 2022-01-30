@@ -105,7 +105,7 @@ export function getFormValidationsAlert ($component) {
     component: {
       tag: 'ValidationsAlert',
       factory: () => ({
-        component: $component.$paas?.importAsyncComponent('ValidationsAlert'),
+        component: $component.$press?.importAsyncComponent('ValidationsAlert'),
       }),
       props: {
         type: '$(bindings.alertType)',

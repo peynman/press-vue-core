@@ -37,7 +37,7 @@ export default {
       return this.cart?.data?.delivery_agent_names ?? []
     },
     cartAvailableDeliveryAgents () {
-      return this.$paas?.getAvailableDeliveryAgents(this)
+      return this.$press?.getAvailableDeliveryAgents(this)
         .filter(a => this.cartAvailableDeliveryAgentNames.includes(a.value)) ?? []
     },
     cartAmountString () {

@@ -1,5 +1,6 @@
 import User from './User'
 import UserProfileMethods from './UserProfileMethods'
+
 export default {
   mixins: [User, UserProfileMethods],
   computed: {

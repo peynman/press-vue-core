@@ -1,7 +1,7 @@
 
 export function imageUploadProperty ($component, item, attr) {
   if (item.tag === 'VImg' && attr.name === 'src') {
-    return () => $component.$paas?.importAsyncComponent('FilePathInput')
+    return () => $component.$press?.importAsyncComponent('FilePathInput')
   }
   return null
 }

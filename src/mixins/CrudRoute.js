@@ -30,7 +30,7 @@ export default {
   methods: {
     onCrudLoaded () {},
     loadCrudDefinition (name) {
-      this.$paas?.loadCrudWithName().then(c => {
+      this.$press?.loadCrudWithName().then(c => {
         this.crud = c.default(this)
         this.$nextTick(() => {
           this.onCrudLoaded()

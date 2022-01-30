@@ -1,10 +1,10 @@
-export default class PaasCore {
+export default class PressCore {
     constructor(options = {}) {
         this.options = options
     }
 
     /**
-     * Install PaasCore Vue extensions
+     * Install PressCore Vue extensions
      * 
      * @param {Vue} Vue
      */
@@ -31,6 +31,15 @@ export default class PaasCore {
      */
     getRendererDictionary($component) {
         return this.options?.schemaTypesDictionary?.($component) ?? {}
+    }
+
+    /**
+     * Get array of extra types for widget renderer
+     * @param {VueComponent} $component
+     * @returns {Array}
+     */
+    getRendererComponentsList($component) {
+        return this.options?.schemaTypesArray?.($component) ?? {}
     }
 
     /**

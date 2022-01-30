@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     widgetsDictionary () {
-      return this.$paas?.getRendererDictionary(this) ?? {}
+      return this.$press?.getRendererDictionary(this) ?? {}
     },
   },
 }

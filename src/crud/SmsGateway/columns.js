@@ -1,0 +1,23 @@
+import { bitwiseFlagsColumn, objectStatusColumn, timestampColumn, userProfileColumn } from '../../utils/crudColumn'
+import Flags from './flags'
+import Gateways from './Gateways'
+
+export default function ($component) {
+  return [{
+      name: 'id',
+      title: $component.$t('components.admin.crud.columns.id'),
+      sortable: true,
+    },
+    {
+      name: 'name',
+      title: $component.$t('components.admin.crud.columns.name'),
+      sortable: true,
+    },
+    objectStatusColumn('gateway', $component.$t('components.admin.crud.columns.gateway'), 'item.gateway', Gateways($component)),
+    userProfileColumn('author', $component.$t('components.admin.crud.columns.user'), 'item.author'),
+    bitwiseFlagsColumn('flags', $component.$t('components.admin.crud.columns.flags'), 'item.flags', Flags($component)),
+    timestampColumn('created_at', $component.$t('components.admin.crud.columns.created_at'), 'created_at'),
+    timestampColumn('updated_at', $component.$t('components.admin.crud.columns.updated_at'), 'updated_at'),
+    timestampColumn('deleted_at', $component.$t('components.admin.crud.columns.deleted_at'), 'deleted_at'),
+  ]
+}

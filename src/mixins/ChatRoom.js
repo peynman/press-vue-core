@@ -10,7 +10,7 @@ export default {
       return this.room?.data?.title
     },
     roomTypes () {
-      return this.$paas?.getAvailableChatRoomTypes(this) ?? []
+      return this.$press?.getAvailableChatRoomTypes(this) ?? []
     },
     roomUnseenMessagesCount () {
       return this.room?.unseen_messages_count ?? this.room?.unseen_messages?.count ?? 0
