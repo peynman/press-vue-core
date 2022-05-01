@@ -10,7 +10,7 @@ export default function ($component) {
     ],
     autoValidate: true,
     form: [
-      getFormValidationsAlert(),
+      getFormValidationsAlert($component),
       {
         key: 'domain',
         rules: [

@@ -3,7 +3,7 @@ import { createCrudRelations, createCrudRelationDictionaryEntry, createAuthorAut
 export default ($component, autoloads, depth) => createCrudRelations(
   $component,
   {
-    author: createAuthorAutoLoader(autoloads),
+    author: createAuthorAutoLoader($component, autoloads),
     ...createCrudRelationDictionaryEntry('sms_gateway', () => import('../SmsGateway'), '*', autoloads, {
       author: false,
     }),

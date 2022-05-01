@@ -37,6 +37,7 @@ export default {
     },
     carouselImagesSorted () {
       return [...(this.product?.data?.types?.images?.slides ?? [])]
+        .filter(a => a.width >= 512)
         .sort((a, b) => (parseInt(a.index) - parseInt(b.index)))
     },
     carouselImages () {
@@ -168,6 +169,8 @@ export default {
           type: 'boxribbon boxribbon-top-right',
           color: asRibbon.data.backColor,
           content: asRibbon.data.title,
+          textColor: asRibbon.data.textColor,
+          fontSize: asRibbon.data.fontSize,
         }
       }
       return this.product?.data?.types?.ribbon
@@ -180,6 +183,12 @@ export default {
     },
     productRibbonContent () {
       return this.productRibbon?.content
+    },
+    productRibbonTextColor () {
+      return this.productRibbon?.textColor
+    },
+    productRibbonFontSize () {
+      return this.productRibbon?.fontSize
     },
     productDescriptionContent () {
       return this.product?.data?.types?.descriptive?.content

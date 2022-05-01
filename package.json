@@ -2,10 +2,26 @@
   "name": "@peynman/press-vue-core",
   "version": "1.0.0",
   "license": "MIT",
-  "scripts": {
-    "build": "webpack"
-  },
   "main": "index.js",
+  "homepage": "https://github.com/peynman/press-vue-core",
+  "url": "https://github.com/peynman/press-vue-core/issues",
+  "email": "packages.press-vue-core@peynman.ir",
+  "author": "peynman",
+  "files": [
+    "crud/*",
+    "locales/*",
+    "mixins/*",
+    "utils/*",
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peynman/press-vue-core.git",
+    "directory": "dist"
+  },
+  "scripts": {
+    "build": "rm -rfd ./dist && babel ./src/ --out-dir ./dist && cp package.json ./dist/package.json && cp src/mixins/iran.json ./dist/mixins/iran.json"
+  },
   "devDependencies": {
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.12",
@@ -13,6 +29,14 @@
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^10.2.1",
+    "eslint": "^6.7.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-loader": "^15.9.8",
+    "vue-template-compiler": "^2.6.14",
     "webpack": "^5.67.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.1"

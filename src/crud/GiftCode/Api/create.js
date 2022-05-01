@@ -2,6 +2,7 @@ import { getCreateFormBindings, getFormSubmitAction, getFormValidationsAlert } f
 import Flags from '../flags'
 import UserCrud from '../../User'
 import ProductCrud from '../../Product'
+import ProductCategoryCrud from '../../ProductCategory'
 import { crudLoaderFunction } from '../../../mixins/CrudTable'
 
 export default function ($component) {
@@ -26,7 +27,7 @@ export default function ($component) {
     ],
     autoValidate: true,
     form: [
-      getFormValidationsAlert(),
+      getFormValidationsAlert($component),
       {
         key: 'code',
         rules: [
@@ -57,7 +58,7 @@ export default function ($component) {
         },
       },
       {
-        key: 'data.gift_same_amount',
+        key: 'data.gift_fix_amount',
         component: {
           tag: 'VCheckbox',
           props: {
@@ -122,7 +123,28 @@ export default function ($component) {
         },
       },
       {
-        key: 'data.specific_ids',
+        key: 'data.productCategories',
+        component: {
+          tag: 'VCrudObjectPicker',
+          props: {
+            crud: ProductCategoryCrud($component, 'product-category', 0),
+            crudLoaderFunction: crudLoaderFunction($component),
+            decorateLabel: '#:id :name',
+            decorateMap: {
+              id: 'id',
+              name: 'name',
+            },
+            label: $component.$t('components.admin.crud.labels.giftCodeProductCategories'),
+            hint: $component.$t('components.admin.crud.hints.giftCodeProductCategories'),
+            multiple: true,
+            chips: true,
+            deletableChips: true,
+            smallChips: true,
+          },
+        },
+      },
+      {
+        key: 'data.customers',
         component: {
           tag: 'VCrudObjectPicker',
           props: {

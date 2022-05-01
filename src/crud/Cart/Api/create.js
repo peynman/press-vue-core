@@ -25,7 +25,7 @@ export default function ($component) {
     ],
     autoValidate: true,
     form: [
-      getFormValidationsAlert(),
+      getFormValidationsAlert($component),
       {
         key: 'customer_id',
         rules: [

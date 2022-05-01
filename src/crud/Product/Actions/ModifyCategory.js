@@ -12,7 +12,7 @@ export default function ($component) {
       autoValidate: true,
       title: $component.$t('components.admin.crud.product.actions.modifyCategory.hint'),
       form: [
-        getFormValidationsAlert(),
+        getFormValidationsAlert($component),
         {
           key: 'mode',
           rules: [

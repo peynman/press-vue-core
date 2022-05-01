@@ -6,7 +6,7 @@ export default function ($component) {
       title: $component.$t('components.admin.crud.columns.id'),
       sortable: true,
     },
-    userProfileColumn('user', $component.$t('components.admin.crud.columns.user'), 'item.user'),
+    userProfileColumn($component, 'user', $component.$t('components.admin.crud.columns.user'), 'item.user'),
     {
       name: 'city_code',
       title: $component.$t('components.admin.crud.columns.city'),

@@ -38,7 +38,7 @@ export default function ($component) {
       },
     ],
     form: [
-      getFormValidationsAlert(),
+      getFormValidationsAlert($component),
       {
         key: 'slug',
         rules: [
@@ -237,6 +237,7 @@ export default function ($component) {
             label: $component.$t('components.admin.crud.labels.content'),
             extraTypes: $component.$press?.getRendererComponentsList($component),
             customPropertyResolver: imageUploadProperty,
+            rendererPreProcessor: $component.preProcessWidget,
           },
         },
       },

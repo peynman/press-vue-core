@@ -17,7 +17,7 @@ export default function ($component) {
       title: $component.$t('components.admin.crud.columns.title'),
       sortable: true,
     },
-    userProfileColumn('author', $component.$t('components.admin.crud.columns.author'), 'item.author'),
+    userProfileColumn($component, 'author', $component.$t('components.admin.crud.columns.author'), 'item.author'),
     timestampColumn('created_at', $component.$t('components.admin.crud.columns.created_at'), 'created_at'),
     timestampColumn('updated_at', $component.$t('components.admin.crud.columns.updated_at'), 'updated_at'),
     timestampColumn('deleted_at', $component.$t('components.admin.crud.columns.deleted_at'), 'deleted_at'),

@@ -7,7 +7,7 @@ export default function ($component) {
     permission: 'page-schemas.update',
     bindings: [
       {
-        name: 'data',
+        name: 'schema',
         type: 'default',
         default: {},
       },
@@ -25,7 +25,7 @@ export default function ($component) {
       },
     ],
     form: [
-      getFormValidationsAlert(),
+      getFormValidationsAlert($component),
       {
         key: 'name',
         rules: [
@@ -88,9 +88,9 @@ export default function ($component) {
       getFormSubmitAction($component, values => {
         return $component.$store.dispatch('apiCall', {
           method: 'PUT',
-          url: `/api/pages/${values.id}`,
+          url: `/api/page-schemas/${values.id}`,
           body: {
-            data: values.data,
+            schema: values.schema,
             name: values.name,
           },
         })

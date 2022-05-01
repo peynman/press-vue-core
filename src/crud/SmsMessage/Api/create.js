@@ -28,7 +28,7 @@ export default function ($component) {
     ],
     autoValidate: true,
     form: [
-      getFormValidationsAlert(),
+      getFormValidationsAlert($component),
       {
         key: 'sms_gateway_id',
         rules: [

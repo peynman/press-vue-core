@@ -1,8 +1,12 @@
 const path = require('path')
 const glob = require('glob')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const {
+    CleanWebpackPlugin
+} = require('clean-webpack-plugin')
+const {
+    BundleAnalyzerPlugin
+} = require('webpack-bundle-analyzer')
 
 const AllUtils = glob.sync('./src/utils/*.js').map(file => 'utils_' + path.parse(file).name)
 
@@ -17,22 +21,31 @@ module.exports = {
             }
             return entries
         }, {}),
-        index: './src/index.js',
+        store: {
+            import: './src/store/index.js',
+            filename: 'store/index.js',
+            dependOn: AllUtils,
+        },
         mixins: {
             import: './src/mixins.js',
             filename: 'mixins/index.js',
             dependOn: AllUtils,
         },
+        index: {
+            import: './src/index.js',
+            dependOn: 'store',
+        },
         crud: {
             import: './src/crud/index.js',
             filename: 'crud/index.js',
-            dependOn: ['mixins', ...AllUtils],
+            dependOn: 'mixins',
         },
+        // locales
         ...glob.sync('./src/lang/*.js').reduce((entries, file) => {
             const p = path.parse(file)
-            entries['locale_' + p.name] = {
+            entries[`locale_${p.name}`] = {
                 import: file,
-                filename: 'locales/' + p.base,
+                filename: `locale/${p.name.toLocaleLowerCase()}.js`,
             }
             return entries
         }, {}),
@@ -40,15 +53,16 @@ module.exports = {
     output: {
         path: path.join(__dirname, '/dist'),
         filename: '[name].js',
-        library: 'press-vue-core',
+        library: 'PressVueCore',
         libraryTarget: 'umd',
+        libraryExport: 'PressVueCore',
         globalObject: 'this',
     },
     optimization: {
         minimize: false,
         splitChunks: {
             chunks: 'all',
-            minSize: 100,
+            minSize: 1,
             cacheGroups: {
                 ...glob.sync('./src/crud/*/index.js').reduce((entries, file) => {
                     const p = path.parse(file)
@@ -62,7 +76,24 @@ module.exports = {
                             return mm.includes(name) && mm.includes('crud')
                         },
                         name(module, chunks, cacheGroupKey) {
-                            return `crud/${name}.js`
+                            return `crud/${name}`
+                        },
+                    }
+                    return entries
+                }, {}),
+                ...glob.sync('./src/store/*/index.js').reduce((entries, file) => {
+                    const p = path.parse(file)
+                    const name = path.basename(p.dir)
+                    entries['storeGroup' + name] = {
+                        test(module) {
+                            if (!module.resource) {
+                                return false
+                            }
+                            const mm = module.resource.substr(__dirname.length)
+                            return mm.includes(name) && mm.includes('store')
+                        },
+                        name(module, chunks, cacheGroupKey) {
+                            return `store/${name}`
                         },
                     }
                     return entries
@@ -70,7 +101,7 @@ module.exports = {
                 ...glob.sync('./src/mixins/*.js').reduce((entries, file) => {
                     const p = path.parse(file)
                     entries['mixinsGroup' + p.name] = {
-                        filename: '[name].js',
+                        filename: '[name]',
                         test(module) {
                             if (!module.rawRequest) {
                                 return false
@@ -98,19 +129,19 @@ module.exports = {
     },
     externals: [
         /^vue.*/,
-        /^vuex.*/,
     ],
     resolve: {
         symlinks: false,
     },
     module: {
         rules: [{
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader'
-            }
-        }, ]
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
+                }
+            },
+        ]
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -122,7 +153,10 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [{
                 from: './package.json',
-                to: './package.json'
+                to: './package.json',
+            }, {
+                from: './src/mixins/*.json',
+                to: 'mixins/[name].json',
             }]
         }),
     ]

@@ -3,7 +3,7 @@ import { createCrudRelations, createAuthorAutoLoader } from '../../utils/crudRel
 export default ($component, autoloads, depth) => createCrudRelations(
   $component,
   {
-    customer: createAuthorAutoLoader(autoloads, 'customer'),
+    customer: createAuthorAutoLoader($component, autoloads, 'customer'),
   },
   depth,
   false,

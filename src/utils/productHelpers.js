@@ -22,14 +22,15 @@ export function getProductCateogiesMaxOffPercent (product) {
 }
 
 export function getProductPriceTag (product) {
+  if (product?.pivot?.data?.amount) {
+    return parseInt(product?.pivot?.data?.amount) / (product?.pivot?.data?.quantity > 0 ? product?.pivot?.data?.quantity : 1)
+  }
   const m = getProductCateogiesMaxOffPercent(product)
   const a = getProductFixedPrice(product)
+
   if (m > 0) {
     return parseInt(a?.amount) * (1 - (m / 100))
   } else {
-    if (product?.pivot?.data?.amount) {
-      return parseInt(product?.pivot?.data?.amount)
-    }
     return parseInt(a.amount)
   }
 }

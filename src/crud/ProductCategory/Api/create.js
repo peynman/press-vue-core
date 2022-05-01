@@ -15,7 +15,7 @@ export default function ($component) {
     ],
     autoValidate: true,
     form: [
-      getFormValidationsAlert(),
+      getFormValidationsAlert($component),
       {
         key: 'name',
         rules: [
@@ -88,6 +88,17 @@ export default function ($component) {
         },
       },
       {
+        key: 'data.fontSize',
+        component: {
+          tag: 'VTextField',
+          props: {
+            label: $component.$t('components.admin.crud.labels.fontSize'),
+            type: 'number',
+            clearable: true,
+          },
+        },
+      },
+      {
         key: 'data.offPercent',
         component: {
           tag: 'VTextField',
@@ -104,6 +115,8 @@ export default function ($component) {
           tag: 'VCheckbox',
           props: {
             label: $component.$t('components.admin.crud.labels.showOnProductCard'),
+            hint: $component.$t('components.admin.crud.hints.showOnProductCard'),
+            persistentHint: true,
           },
         },
       },
@@ -113,6 +126,8 @@ export default function ($component) {
           tag: 'VCheckbox',
           props: {
             label: $component.$t('components.admin.crud.labels.queryFrontEnd'),
+            hints: $component.$t('components.admin.crud.hints.queryFrontEnd'),
+            persistentHint: true,
           },
         },
       },
@@ -122,6 +137,8 @@ export default function ($component) {
           tag: 'VCheckbox',
           props: {
             label: $component.$t('components.admin.crud.labels.isFilterable'),
+            hint: $component.$t('components.admin.crud.hints.isFilterable'),
+            persistentHint: true,
           },
         },
       },
@@ -131,6 +148,8 @@ export default function ($component) {
           tag: 'VCheckbox',
           props: {
             label: $component.$t('components.admin.crud.labels.showInFrontFilters'),
+            hint: $component.$t('components.admin.crud.hints.showInFrontFilters'),
+            persistentHint: true,
           },
         },
       },
@@ -140,6 +159,8 @@ export default function ($component) {
           tag: 'VCheckbox',
           props: {
             label: $component.$t('components.admin.crud.labels.showAsProductBadge'),
+            hint: $component.$t('components.admin.crud.hints.showAsProductBadge'),
+            persistentHint: true,
           },
         },
       },

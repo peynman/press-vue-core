@@ -6,8 +6,8 @@ export default function ($component) {
       title: $component.$t('components.admin.crud.columns.id'),
       sortable: true,
     },
-    nameTitleColumn('form', $component.$t('components.admin.crud.columns.form'), 'item.form'),
-    userProfileColumn('user', $component.$t('components.admin.crud.columns.user'), 'item.user'),
+    nameTitleColumn($component, 'form', $component.$t('components.admin.crud.columns.form'), 'item.form'),
+    userProfileColumn($component, 'user', $component.$t('components.admin.crud.columns.user'), 'item.user'),
     {
       name: 'tags',
       title: $component.$t('components.admin.crud.columns.formTags'),

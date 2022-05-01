@@ -3,7 +3,7 @@ import { createCrudRelations, createAuthorAutoLoader, createCrudRelationDictiona
 export default ($component, autoloads, depth) => createCrudRelations(
   $component,
   {
-    user: createAuthorAutoLoader(autoloads, 'user'),
+    user: createAuthorAutoLoader($component, autoloads, 'user'),
     ...createCrudRelationDictionaryEntry('form', () => import('../Form'), '*', autoloads, {
       author: false,
     }),

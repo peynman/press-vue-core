@@ -11,7 +11,7 @@ export default function ($component) {
       ]),
     ],
     form: [
-      getFormValidationsAlert(),
+      getFormValidationsAlert($component),
       timestampFilter('createdTimestamp', $component.$t('components.admin.crud.filters.createdTimestamp')),
       timestampFilter('deletedTimestamp', $component.$t('components.admin.crud.filters.updatedTimestamp')),
       timestampFilter('updatedTimestamp', $component.$t('components.admin.crud.filters.deletedTimestamp')),

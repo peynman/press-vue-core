@@ -3,7 +3,7 @@ import { createCrudRelations, createAuthorAutoLoader, createCrudRelationDictiona
 export default ($component, autoloads, depth) => createCrudRelations(
   $component,
   {
-    author: createAuthorAutoLoader(autoloads),
+    author: createAuthorAutoLoader($component, autoloads),
     ...createCrudRelationDictionaryEntry('categories', () => import('../ProductCategory'), '*', autoloads, {
       author: false,
     }),

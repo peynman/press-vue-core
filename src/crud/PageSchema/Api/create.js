@@ -28,7 +28,7 @@ export default function ($component) {
       },
     ],
     form: [
-      getFormValidationsAlert(),
+      getFormValidationsAlert($component),
       {
         key: 'name',
         rules: [

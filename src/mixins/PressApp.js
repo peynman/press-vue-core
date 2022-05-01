@@ -24,12 +24,6 @@ export default {
           /* eslint-enable no-console */
         }
       }
-    }
-
-    this.$store.commit('cart/loadCartFromStorage')
-    this.$store.commit('admin/loadPages')
-
-    if (this.$store.getters.jwtToken) {
       this.$store.dispatch('profile/fetchMe')
         .then(json => {
           this.$store.commit('profile/setUser', json)
@@ -51,5 +45,8 @@ export default {
           })
         })
     }
+
+    this.$store.commit('cart/loadCartFromStorage')
+    this.$store.commit('admin/loadPages')
   },
 }

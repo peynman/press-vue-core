@@ -23,7 +23,7 @@ export default function ($component) {
     ],
     autoValidate: true,
     form: [
-      getFormValidationsAlert(),
+      getFormValidationsAlert($component),
       {
         key: 'name',
         rules: [
@@ -57,6 +57,7 @@ export default function ($component) {
             label: $component.$t('components.admin.crud.labels.content'),
             extraTypes: $component.$press?.getRendererComponentsList($component),
             customPropertyResolver: imageUploadProperty,
+            rendererPreProcessor: $component.preProcessWidget,
           },
         },
       },

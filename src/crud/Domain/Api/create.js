@@ -20,7 +20,7 @@ export default function ($component) {
       },
     ],
     form: [
-      getFormValidationsAlert(),
+      getFormValidationsAlert($component),
       {
         key: 'domain',
         rules: [

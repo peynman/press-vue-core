@@ -83,8 +83,7 @@ export default {
         return this.$store.getters.getUrl(targetUser.form_profile_default.data.values.profilePic)
       }
 
-      return null
-//      return '/vendor/dist/img/avatar.png'
+      return undefined
     },
   },
 }

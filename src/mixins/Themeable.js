@@ -13,12 +13,30 @@ export default {
 
           return null
         },
+        themeRoot () {
+          return this.previewTheme ?? this.$store.getters['theme/theme']
+        },
         theme () {
-          const theme = this.previewTheme ?? this.$store.getters['theme/theme']
-          return this.$vuetify.theme.isDark ? theme.dark : theme.light
+          return this.$vuetify.theme.isDark ? this.themeRoot.dark : this.themeRoot.light
         },
     },
     methods: {
+      $dim (value) {
+        if (typeof value === 'object') {
+          switch (this.$vuetify.breakpoint.name) {
+            case 'xs': return value.xs ?? value.default ?? value
+            case 'sm': return value.sm ?? value.default ?? value
+            case 'md': return value.md ?? value.default ?? value
+            case 'lg': return value.lg ?? value.default ?? value
+            case 'xl': return value.xl ?? value.default ?? value
+          }
+        }
+
+        return value
+      },
+      $brush (value) {
+        return value
+      },
       updateVuetifyThemeColors (colors) {
         if (colors) {
           Object.keys(colors).forEach(k => {

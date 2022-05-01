@@ -1,4 +1,5 @@
 import { getCreateFormBindings, getFormValidationsAlert, getFormSubmitAction, bindingRepo } from '../../../utils/crudForm'
+import { imageUploadProperty } from '../../../utils/schemaHelpers'
 
 export default function ($component) {
   return {
@@ -26,7 +27,7 @@ export default function ($component) {
     ],
     autoValidate: true,
     form: [
-      getFormValidationsAlert(),
+      getFormValidationsAlert($component),
       {
         key: 'name',
         rules: [
@@ -89,6 +90,8 @@ export default function ($component) {
           props: {
             label: $component.$t('components.admin.crud.labels.content'),
             extraTypes: $component.$press?.getRendererComponentsList($component),
+            customPropertyResolver: imageUploadProperty,
+            rendererPreProcessor: $component.preProcessWidget,
             items: [
               {
                 id: 'root',
