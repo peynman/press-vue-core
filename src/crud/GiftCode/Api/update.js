@@ -144,6 +144,17 @@ export default function ($component) {
         },
       },
       {
+        key: 'data.expire_on_use_count',
+        component: {
+          tag: 'VTextField',
+          props: {
+            label: $component.$t('components.admin.crud.labels.giftCodeExpireOnUseCount'),
+            hint: $component.$t('components.admin.crud.hints.giftCodeExpireOnUseCount'),
+            type: 'number',
+          },
+        },
+      },
+      {
         key: 'data.multi_time_use',
         component: {
           tag: 'VCheckbox',
