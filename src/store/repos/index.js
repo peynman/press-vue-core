@@ -9,6 +9,7 @@ export default {
     productCategories: null,
     productTypes: null,
     smsGateways: null,
+    forms: null,
 
     promises: {
       roles: null,
@@ -17,6 +18,7 @@ export default {
       productCategories: null,
       productTypes: null,
       smsGateways: null,
+      forms: null,
     },
     loading: {
       roles: false,
@@ -25,6 +27,7 @@ export default {
       productCategories: false,
       productTypes: false,
       smsGateways: false,
+      forms: false,
     },
   },
 
@@ -341,7 +344,34 @@ export default {
       ], { root: true }).then(repos => {
         return Promise.resolve(repos.form)
       })
+    },
+
+    fetchForms (context) {
+      if (context.state.forms) {
+        return Promise.resolve(context.state.forms)
+      }
+
+      if (context.state.promises.forms) {
+        return context.state.promises.forms
+      }
+
+      context.state.loading.forms = true
+      context.state.promises.forms = context.dispatch('fetchApiSources', [
+        {
+          resource: 'repository',
+          class: '\\Larapress\\Profiles\\Repository\\Form\\IFormRepository',
+          method: 'getFillableForms',
+          path: 'forms',
+          args: []
+        },
+      ], { root: true }).then(repos => {
+        context.state.forms = repos.forms
+        return Promise.resolve(repos.forms)
+      }).finally(() => {
+        context.state.loading.forms = false
+      })
     }
+
   },
 
   getters: {
@@ -361,6 +391,9 @@ export default {
       return state.loading.productTypes
     },
     isSmsGatewaysLoading (state) {
+      return state.loading.smsGateways
+    },
+    isFormsLoading (state) {
       return state.loading.smsGateways
     },
   },

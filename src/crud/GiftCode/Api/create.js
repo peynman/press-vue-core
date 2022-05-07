@@ -14,7 +14,12 @@ export default function ($component) {
       {
         name: 'amount',
         type: 'default',
-        default: {},
+        default: 0,
+      },
+      {
+        name: 'currency',
+        type: 'default',
+        default: 1,
       },
       {
         name: 'data',
@@ -45,7 +50,7 @@ export default function ($component) {
         key: 'amount',
         rules: [
           $component.getRequiredRule(),
-          $component.getMinRule(1),
+          $component.getMinRule(0),
         ],
         component: {
           tag: 'ObjectAmountInput',
@@ -108,10 +113,11 @@ export default function ($component) {
           props: {
             crud: ProductCrud($component, 'product', 0),
             crudLoaderFunction: crudLoaderFunction($component),
-            decorateLabel: '#:id :name',
+            decorateLabel: '#:id :name (:title)',
             decorateMap: {
               id: 'id',
               name: 'name',
+              title: 'data.title',
             },
             label: $component.$t('components.admin.crud.labels.giftCodeProducts'),
             hint: $component.$t('components.admin.crud.hints.giftCodeProducts'),
@@ -129,10 +135,11 @@ export default function ($component) {
           props: {
             crud: ProductCategoryCrud($component, 'product-category', 0),
             crudLoaderFunction: crudLoaderFunction($component),
-            decorateLabel: '#:id :name',
+            decorateLabel: '#:id :name (:title)',
             decorateMap: {
               id: 'id',
               name: 'name',
+              title: 'data.title',
             },
             label: $component.$t('components.admin.crud.labels.giftCodeProductCategories'),
             hint: $component.$t('components.admin.crud.hints.giftCodeProductCategories'),

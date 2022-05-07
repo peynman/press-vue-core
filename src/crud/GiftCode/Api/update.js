@@ -12,6 +12,16 @@ export default function ($component) {
     permission: 'carts.update',
     bindings: [
       {
+        name: 'amount',
+        type: 'default',
+        default: 0,
+      },
+      {
+        name: 'currency',
+        type: 'default',
+        default: 1,
+      },
+      {
         name: 'data',
         type: 'default',
         default: {},
@@ -22,10 +32,23 @@ export default function ($component) {
     form: [
       getFormValidationsAlert($component),
       {
+        key: 'code',
+        rules: [
+          $component.getRequiredRule(),
+          $component.getMinLengthRule(6),
+        ],
+        component: {
+          tag: 'VTextField',
+          props: {
+            label: $component.$t('components.admin.crud.labels.giftCode'),
+          },
+        },
+      },
+      {
         key: 'amount',
         rules: [
           $component.getRequiredRule(),
-          $component.getMinRule(1),
+          $component.getMinRule(0),
         ],
         component: {
           tag: 'ObjectAmountInput',
@@ -88,10 +111,11 @@ export default function ($component) {
           props: {
             crud: ProductCrud($component, 'product', 0),
             crudLoaderFunction: crudLoaderFunction($component),
-            decorateLabel: '#:id :name',
+            decorateLabel: '#:id :name (:title)',
             decorateMap: {
               id: 'id',
               name: 'name',
+              title: 'data.title',
             },
             label: $component.$t('components.admin.crud.labels.giftCodeProducts'),
             hint: $component.$t('components.admin.crud.hints.giftCodeProducts'),
@@ -109,10 +133,11 @@ export default function ($component) {
           props: {
             crud: ProductCategoryCrud($component, 'product-category', 0),
             crudLoaderFunction: crudLoaderFunction($component),
-            decorateLabel: '#:id :name',
+            decorateLabel: '#:id :name (:title)',
             decorateMap: {
               id: 'id',
               name: 'name',
+              title: 'data.title',
             },
             label: $component.$t('components.admin.crud.labels.giftCodeProductCategories'),
             hint: $component.$t('components.admin.crud.hints.giftCodeProductCategories'),
@@ -193,8 +218,11 @@ export default function ($component) {
           method: 'PUT',
           url: `/api/gift-codes/${values.id}`,
           body: {
-            flags: values.flags,
+            code: values.code,
+            amount: values.amount.amount,
+            currency: values.amount.currency,
             data: values.data,
+            flags: values.flags,
           },
         })
       }),

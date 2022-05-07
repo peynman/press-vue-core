@@ -9,6 +9,9 @@ export default {
     cartGiftCode () {
       return this.cart?.data?.gift_code
     },
+    cartPromotions () {
+      return this.cart?.data?.promotions ?? []
+    },
     cartItemsCount () {
       return this.cartItems.length
     },
@@ -23,6 +26,9 @@ export default {
     },
     cartGiftAmount () {
       return parseFloat(this.cartGiftCode?.amount ?? 0)
+    },
+    cartPromotionsAmount () {
+      return this.cartPromotions?.reduce((tt, n) => (tt + parseFloat(n.amount)), 0)
     },
     cartShippingAmount () {
       return parseFloat(this.cart?.data?.delivery_price ?? 0)
@@ -61,6 +67,12 @@ export default {
     cartGiftAmountString () {
       return this.$t('components.website.productCard.price', {
         amount: this.$n(this.cartGiftAmount, 'decimal'),
+        currency: this.$store.getters['banking/getCurrencyTitle'](this.cartCurrency),
+      })
+    },
+    cartPromotionsAmountString () {
+      return this.$t('components.website.productCard.price', {
+        amount: this.$n(this.cartPromotionsAmount, 'decimal'),
         currency: this.$store.getters['banking/getCurrencyTitle'](this.cartCurrency),
       })
     },
