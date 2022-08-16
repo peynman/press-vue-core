@@ -57,8 +57,8 @@ export default class PressCore {
      * @param {VueComponent} $component
      * @returns {Array}
      */
-    getRendererComponentsList($component) {
-        return this.options?.schemaTypesArray?.($component) ?? {}
+    getBuilderComponentsDictionary($component) {
+        return this.options?.builderTypesDictionary?.($component) ?? {}
     }
 
     /**

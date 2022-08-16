@@ -71,6 +71,12 @@ module.exports = {
   },
   overrides: [
     {
+      files: '**/*.js',
+      rules: {
+        indent: 'off',
+      }
+    },
+    {
       files: '**/*.vue',
       rules: {
         indent: 'off',

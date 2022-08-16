@@ -161,6 +161,17 @@ export default {
             offPercent: 'درصد تخفیف برای محصولات در این دسته بندی',
             fontSize: 'اندازه فونت متن',
             successMessage: 'پیام ثبت موفق فرم',
+            sitemap: 'تولید لینک نقشه سایت',
+            changeFreq: 'آهنگ تغییرات',
+            freq: {
+              always: 'همیشه',
+              never: 'هرگز',
+              hourly: 'ساعتی',
+              daily: 'روزانه',
+              weekly: 'هفتگی',
+              monthly: 'ماهانه',
+              yearly: 'سالیانه',
+            },
           },
           hints: {
             name: 'نام ارجاع باید با حروف انگلیسی باشد',
@@ -206,6 +217,8 @@ export default {
             general: 'تنظیمات عمومی',
             options: 'تنظیمات ثانویه',
             customCodes: 'کدهای اختصاصی',
+            sitemap: 'نقشه سایت',
+            reports: 'گزارش گیری',
           },
           titles: {
             table: 'لیست {crud} ثبت شده در سایت',

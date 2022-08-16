@@ -44,6 +44,10 @@ export default {
           this.total = json.total
           this.page = json.currPage
           this.totalPages = Math.ceil(json.total / json.perPage)
+          this.$store.dispatch('analytics/trackSiteSearch', {
+            term,
+            total: json.total,
+          })
         })
         .finally(() => {
           this.loading = false

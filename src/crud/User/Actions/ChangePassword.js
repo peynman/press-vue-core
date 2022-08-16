@@ -3,9 +3,9 @@ export default function ($component) {
     name: 'change-password',
     title: $component.$t('components.admin.crud.user.actions.changePassword'),
     icon: 'mdi-lock',
-    batched: true,
+    batched: false,
     api: {
-      method: 'PUT',
+      method: 'POST',
       url: '/api/users/{id}',
       permission: 'users.update',
       form: [

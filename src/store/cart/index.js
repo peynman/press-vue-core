@@ -29,6 +29,11 @@ export default {
         }, { root: true })
           .then(json => {
             context.commit('updateCart', json)
+            context.dispatch('analytics/trackCartAddItem', {
+              cart: json,
+              product: details.product,
+              details: details
+            })
             return Promise.resolve(json)
           })
           .finally(() => {
@@ -53,6 +58,10 @@ export default {
         }, { root: true })
           .then(json => {
             context.commit('updateCart', json)
+            context.dispatch('analytics/trackCartRemoveItem', {
+              cart: json,
+              productName: details.product.name,
+            })
             return Promise.resolve(json)
           })
           .finally(() => {
@@ -124,6 +133,9 @@ export default {
       }, { root: true })
         .then(json => {
           context.commit('updateCart', json)
+          context.dispatch('analytics/trackCartAmount', {
+            cart: json,
+          })
           return Promise.resolve(json)
         })
         .finally(() => {
@@ -135,12 +147,25 @@ export default {
       const localCart = context.getters.cart
       const user = context.rootGetters['profile/user']
       if (localCart) {
-        if (localCart?.updated_at !== user?.purchase_cart?.updated_at) {
-          context.dispatch('syncWithRemote')
+        if (localCart.id === user?.purchase_cart?.id) {
+          if (localCart.updated_at !== user?.purchase_cart?.updated_at) {
+            context.dispatch('syncWithRemote')
+            return
+          }
         }
-      } else {
-        if (user?.purchase_cart?.id) {
-          context.commit('updateCart', user.purchase_cart)
+      }
+
+      if (user?.purchase_cart?.id > 0) {
+        context.commit('updateCart', user.purchase_cart)
+        context.dispatch('analytics/trackCartCleared')
+        if (user.purchase_cart?.products) {
+          user.purchase_cart?.products.forEach(p => {
+            context.dispatch('analytics/trackCartAddItem', {
+              cart: json,
+              product: p,
+              details: p.pivot.data
+            })
+          })
         }
       }
     },

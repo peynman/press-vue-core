@@ -7,6 +7,13 @@ export default function ($component) {
       title: $component.$t('components.admin.crud.columns.id'),
       sortable: true,
     },
+    {
+      name: 'periodStart',
+      title: $component.$t('components.admin.crud.columns.purchased_at'),
+      sortable: true,
+      hideInTable: true,
+      artificial: true,
+    },
     userProfileColumn($component, 'customer', $component.$t('components.admin.crud.columns.user'), 'item.customer'),
     cartDetailsColumn($component, 'cart', $component.$t('components.admin.crud.columns.details'), 'item'),
     timestampColumn('created_at', $component.$t('components.admin.crud.columns.created_at'), 'created_at'),

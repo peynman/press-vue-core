@@ -4,7 +4,7 @@ export function getProductFixedPrice (product) {
 
 export function getProductCategories (product) {
   return product?.categories?.filter(c => c.data?.showOnProductCard)
-    .sort((a, b) => a.data?.displayPriority - b.data?.displayPriority) ?? []
+    .sort((a, b) => parseInt(a.data?.order ?? a.id) - parseInt(b.data?.order ?? a.id)) ?? []
 }
 
 export function getProductCateogiesMaxOffPercent (product) {

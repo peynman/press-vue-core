@@ -4,26 +4,26 @@ export default {
   mixins: [Themeable],
   computed: {
     relativeFormatter () {
-      return new Intl.RelativeTimeFormat(this.theme.website.formatting.locale, {
+      return new Intl.RelativeTimeFormat(this.theme.formatting.locale, {
         numeric: 'auto',
       })
     },
     timestampFormatter () {
       return Intl.DateTimeFormat(
-        this.theme.website.formatting.locale,
-        this.theme.website.formatting.timestampFormat
+        this.theme.formatting.locale,
+        this.theme.formatting.timestampFormat
       )
     },
     timeFormatter () {
       return new Intl.DateTimeFormat(
-        this.theme.website.formatting.locale,
-        this.theme.website.formatting.timeFormat
+        this.theme.formatting.locale,
+        this.theme.formatting.timeFormat
       )
     },
     dateFormatter () {
       return new Intl.DateTimeFormat(
-        this.theme.website.formatting.locale,
-        this.theme.website.formatting.dateFormat
+        this.theme.formatting.locale,
+        this.theme.formatting.dateFormat
       )
     },
     relativeTimeDivisions () {

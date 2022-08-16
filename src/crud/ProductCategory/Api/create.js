@@ -52,7 +52,7 @@ export default function ($component) {
         },
       },
       {
-        key: 'data.displayPriority',
+        key: 'data.order',
         component: {
           tag: 'VTextField',
           props: {

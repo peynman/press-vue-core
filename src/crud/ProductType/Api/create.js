@@ -52,7 +52,7 @@ export default function ($component) {
           tag: 'VSchemaBuilder',
           props: {
             label: $component.$t('components.admin.crud.labels.content'),
-            extraTypes: $component.$press?.getRendererComponentsList($component),
+            componentsDictionary: $component.$press?.getBuilderComponentsDictionary($component),
             customPropertyResolver: imageUploadProperty,
             rendererPreProcessor: $component.preProcessWidget,
           },

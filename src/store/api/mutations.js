@@ -1,3 +1,7 @@
+export function setApiHostname (hostname) {
+  state.apiHostname = hostname
+}
+
 export function setApiToken (state, token) {
   state.api = token
   if (token) {

@@ -20,7 +20,7 @@ export default {
         this.categoriesList = categories
         return Promise.resolve(categories
           .filter(filter)
-          .sort((a, b) => a.data?.order - b.data?.order)
+          .sort((a, b) => parseInt(a.data?.order ?? a.id) - parseInt(b.data?.order ?? b.id))
           .reduce((arr, c) => {
             if (c.parent_id) {
               const parentIndex = arr.findIndex(s => s.id === c.parent_id)
@@ -36,14 +36,14 @@ export default {
             return arr
           }, [])
           .map(c => ({
-              object: c,
+            object: c,
             id: c.id,
             title: c.data.title,
             icon: c.data.icon,
             to: '/shop/category/' + c.id,
             order: 1000 + c.data.order,
             data: c.data,
-            children: c.children?.sort((a, b) => a.data?.order - b.data?.order)
+            children: c.children?.sort((a, b) => parseInt(a.data?.order ?? a.id) - parseInt(b.data?.order ?? b.id))
               .filter(filter)
               .map(cc => ({
                 object: cc,
@@ -53,7 +53,7 @@ export default {
                 data: cc.data,
                 order: cc.data.order,
                 to: '/shop/category/' + cc.id,
-                children: cc.children?.sort((a, b) => a.data?.order - b.data?.order)
+                children: cc.children?.sort((a, b) => parseInt(a.data?.order ?? a.id) - parseInt(b.data?.order ?? b.id))
                   .filter(filter)
                   .map(ccc => ({
                     object: ccc,

@@ -320,7 +320,7 @@ export default {
     },
 
     fetchForm (context, formId) {
-      return context.dispatch('fetchApiSources', [
+      return context.dispatch('fetchSources', [
         {
           resource: 'repository',
           class: '\\Larapress\\Profiles\\Repository\\Form\\IFormRepository',

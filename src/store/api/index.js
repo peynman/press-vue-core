@@ -32,6 +32,7 @@ export default {
 
   state: {
     apiPromise: null,
+    apiHostname: null,
     apiReady: false,
     loginDialog: false,
     apiTimestamp: null,

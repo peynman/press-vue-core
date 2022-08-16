@@ -8,9 +8,9 @@ export function authHeader (state, getters) {
   }
 }
 
-export function getBaseUrl () {
-  return process.env.VUE_APP_API_BASE_URL === undefined
-    ? window.location.origin
+export function getBaseUrl (state) {
+  return state.apiHostname !== null ? state.apiHostname :
+        process.env.VUE_APP_API_BASE_URL === undefined ? window.location.origin
     : `${process.env.VUE_APP_API_BASE_URL_SCHEMA}${process.env.VUE_APP_API_BASE_URL}`
 }
 
@@ -20,9 +20,9 @@ export function getWebsiteUrl () {
   }
 }
 
-export function getUrl () {
+export function getUrl (state) {
   return url => {
-    return `${getBaseUrl()}${url}`
+    return `${getBaseUrl(state)}${url}`
   }
 }
 

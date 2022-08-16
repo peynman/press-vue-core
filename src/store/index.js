@@ -15,6 +15,7 @@ import wallet from './wallet'
 import pages from './pages'
 import theme from './theme'
 import forms from './forms'
+import analytics from './analytics'
 
 export default {
   api,
@@ -34,4 +35,5 @@ export default {
   pages,
   theme,
   forms,
+  analytics,
 }
