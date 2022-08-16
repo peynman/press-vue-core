@@ -1,4 +1,4 @@
-import { imageUploadProperty } from '../../../utils/schemaHelpers'
+import { imageUploadProperty } from '../../../../utils/schemaHelpers'
 
 export default $component => ([
     {

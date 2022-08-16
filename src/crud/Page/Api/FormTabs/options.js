@@ -1,5 +1,5 @@
-import SchemaCrud from '../../PageSchema'
-import { crudLoaderFunction } from '../../../mixins/CrudTable'
+import SchemaCrud from '../../../PageSchema'
+import { crudLoaderFunction } from '../../../../mixins/CrudTable'
 
 export default $component => ([
     {
