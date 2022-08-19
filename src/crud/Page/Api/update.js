@@ -34,6 +34,14 @@ export default function ($component) {
         text: $component.$t('components.admin.crud.tabs.options'),
       },
       {
+        value: 'reports',
+        text: $component.$t('components.admin.crud.tabs.reports'),
+      },
+      {
+        value: 'sitemap',
+        text: $component.$t('components.admin.crud.tabs.sitemap'),
+      },
+      {
         value: 'customCodes',
         text: $component.$t('components.admin.crud.tabs.customCodes'),
       },

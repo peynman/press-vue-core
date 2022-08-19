@@ -47,7 +47,7 @@ export default {
           this.$store.dispatch('analytics/trackSiteSearch', {
             term,
             total: json.total,
-          })
+          }, { root: true })
         })
         .finally(() => {
           this.loading = false

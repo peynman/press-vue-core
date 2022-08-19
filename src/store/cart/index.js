@@ -32,8 +32,8 @@ export default {
             context.dispatch('analytics/trackCartAddItem', {
               cart: json,
               product: details.product,
-              details: details
-            })
+              details,
+            }, { root: true })
             return Promise.resolve(json)
           })
           .finally(() => {
@@ -61,7 +61,7 @@ export default {
             context.dispatch('analytics/trackCartRemoveItem', {
               cart: json,
               productName: details.product.name,
-            })
+            }, { root: true })
             return Promise.resolve(json)
           })
           .finally(() => {
@@ -137,7 +137,7 @@ export default {
             cart: json,
           })
           return Promise.resolve(json)
-        })
+        }, { root: true })
         .finally(() => {
           context.commit('setLoading', false)
         })
@@ -156,17 +156,19 @@ export default {
       }
 
       if (user?.purchase_cart?.id > 0) {
-        context.commit('updateCart', user.purchase_cart)
-        context.dispatch('analytics/trackCartCleared')
-        if (user.purchase_cart?.products) {
-          user.purchase_cart?.products.forEach(p => {
-            context.dispatch('analytics/trackCartAddItem', {
-              cart: json,
-              product: p,
-              details: p.pivot.data
+        if (localCart?.id !== user?.purchase_cart?.id) {
+          context.dispatch('analytics/trackCartCleared', {}, { root: true })
+          if (user.purchase_cart?.products) {
+            user.purchase_cart.products.forEach(p => {
+              context.dispatch('analytics/trackCartAddItem', {
+                cart: user.purchase_cart,
+                product: p,
+                details: p.pivot.data,
+              }, { root: true })
             })
-          })
+          }
         }
+        context.commit('updateCart', user.purchase_cart)
       }
     },
 
