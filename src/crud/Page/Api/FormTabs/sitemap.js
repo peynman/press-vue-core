@@ -18,7 +18,7 @@ export default $component => ([
           label: $component.$t('components.admin.crud.labels.changeFreq'),
           items: Object.entries($component.$t('components.admin.crud.labels.freq')).map(e => ({
             value: e[0],
-            title: e[1],
+            text: e[1],
           })),
         },
       },
