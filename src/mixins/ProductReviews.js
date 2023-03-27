@@ -6,16 +6,14 @@ export default {
     product () {
       return this.value
     },
-    overalRating () {
-      return this.product?.overalRating
+    aggregatedRating () {
+      return parseFloat(this.product?.rating?.rating ?? 0)
+    },
+    ratingsCount () {
+      return parseInt(this.product?.rating?.rates_count ?? 0)
     },
     isFavorited () {
-      const index = this.product?.reviews?.findIndex(r => r.author_id === this.authUser?.id)
-      if (index >= 0) {
-        return this.product?.reviews[index].data?.reaction?.includes('liked')
-      } else {
-        return false
-      }
+      return this.product?.liked?.data?.reaction?.includes('liked') ?? false
     },
     hasSentReview () {
       return this.productReviews?.filter(r => r.author_id === this.authUser?.id).length > 0
@@ -28,17 +26,13 @@ export default {
     changeProductRating () {
     },
     toggleProductFavorite () {
-      const index = this.product?.reviews?.findIndex(r => r.author_id === this.authUser?.id)
-      if (index >= 0) {
+      if (this.isFavorited) {
         return this.$store.dispatch('product/unlikeProduct', this.product.id).then(r => {
-          this.product.reviews.splice(index, 1)
+          this.product.liked = null
         })
       } else if (this.product) {
         return this.$store.dispatch('product/likeProduct', this.product.id).then(r => {
-          if (!this.product.reviews) {
-            this.$set(this.product, 'reviews', [])
-          }
-          this.product.reviews.push(r)
+          this.$set(this.product, 'liked', r)
           return Promise.resolve(r)
         })
       }

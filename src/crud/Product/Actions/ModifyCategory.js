@@ -44,7 +44,6 @@ export default function ($component) {
       ],
       actions: [
         getFormSubmitAction($component, values => {
-          console.log(values)
           return $component.$store.dispatch('product/modifyCategories', {
             categories: values.categories?.map(c => c.id) ?? [],
             productIds: values.selections?.map(p => p.id) ?? [],

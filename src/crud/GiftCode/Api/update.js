@@ -149,6 +149,28 @@ export default function ($component) {
         },
       },
       {
+        key: 'data.productNoInCategories',
+        component: {
+          tag: 'VCrudObjectPicker',
+          props: {
+            crud: ProductCategoryCrud($component, 'product-category', 0),
+            crudLoaderFunction: crudLoaderFunction($component),
+            decorateLabel: '#:id :name (:title)',
+            decorateMap: {
+              id: 'id',
+              name: 'name',
+              title: 'data.title',
+            },
+            label: $component.$t('components.admin.crud.labels.giftCodeProductNotInCategories'),
+            hint: $component.$t('components.admin.crud.hints.giftCodeProductNotInCategories'),
+            multiple: true,
+            chips: true,
+            deletableChips: true,
+            smallChips: true,
+          },
+        },
+      },
+      {
         key: 'data.customers',
         component: {
           tag: 'VCrudObjectPicker',

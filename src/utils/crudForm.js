@@ -137,8 +137,7 @@ export function getFormSimpleAction (title, props, onSubmit) {
     renderer => {
       renderer.setBindingValue('submiting', true)
       const values = renderer.getBindingValues()
-      console.log(values)
-      onSubmit(values)
+      onSubmit(values, renderer)
         .then(json => {
           return Promise.resolve(json)
         })
@@ -177,7 +176,7 @@ export function getFormValidatableAction (title, props, onSubmit) {
         renderer.setBindingValue('submitType', 'primary')
         renderer.setBindingValue('alertMessage', null)
         renderer.setBindingValue('alertErrors', null)
-        onSubmit(values)
+        onSubmit(values, renderer)
           .then(json => {
             renderer.setBindingValue('alertMessage', json.message)
             renderer.setBindingValue('alertType', 'success')

@@ -68,6 +68,30 @@ export default $component => ([
         },
     },
     {
+      key: 'options.modifiers',
+      tab: 'options',
+      component: {
+        tag: 'VAutocomplete',
+        props: {
+          label: $component.$t('components.admin.crud.labels.pageModifiers'),
+          multiple: true,
+          chips: true,
+          deletableChips: true,
+          smallChips: true,
+          items: [
+            {
+              value: '\\Larapress\\Pages\\Services\\Pages\\PageModifiers\\ISearchModifier',
+              text: 'SearchModifier',
+            },
+            {
+              value: '\\Larapress\\Pages\\Services\\Pages\\PageModifiers\\IPageTitleModifier',
+              text: 'PageTitleModifier',
+            },
+          ],
+        },
+      },
+    },
+    {
         key: 'options.sources',
         tab: 'options',
         component: {
